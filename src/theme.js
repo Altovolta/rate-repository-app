@@ -2,7 +2,9 @@ const theme = {
   colors: {
     textPrimary: '#24292e',
     textSecondary: '#586069',
+    textTag: "white",
     primary: '#0366d6',
+    appBar: "#ff5600"
   },
   fontSizes: {
     body: 14,
@@ -16,8 +18,16 @@ const theme = {
     normal: '400',
     bold: '700',
   },
-  backgounds: {
-    appBarBackground: "#ff5600"
+  borders: {
+    borderRadius: 3,
+  },
+  tinyImage: {
+    width: 50, 
+    height: 50,
+  },
+  padding: {
+    small: 3,
+    big: 7,
   }
 };
 
