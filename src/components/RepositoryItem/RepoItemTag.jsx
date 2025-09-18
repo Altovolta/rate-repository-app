@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     color: theme.colors.textTag,
     borderRadius: theme.borders.borderRadius,
     padding: theme.spacing.sm,
-    flexGrow: 0,
   },
 })
 

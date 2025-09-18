@@ -5,7 +5,7 @@ import Text from "../Text";
 const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
-    fontSize: theme.fontSizes.subheading
+    fontSize: theme.fontSizes.subheading,
   },
   value: {
     color: "textSecondary",

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   tag: {
     alignSelf: "flex-end", 
     paddingLeft: theme.spacing.mid, 
-    rowGap: theme.spacing.sm
+    rowGap: theme.spacing.sm,
   }
 })
 

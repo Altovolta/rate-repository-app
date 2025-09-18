@@ -11,19 +11,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row"
   },
-  text: {
-    fontSize: theme.fontSizes.appBarItem,
-    fontWeight: theme.fontWeights.bold,
-    color: theme.colors.textPrimary,
-  }
 });
 
 const AppBar = () => {
   return (
   <View style={styles.container}>
     <ScrollView horizontal>
-      <AppBarTab textStyle={styles.text} text={"Repositories"} path="/"/>
-      <AppBarTab textStyle={styles.text} text={"Sign In"} path="/signin"/>
+      <AppBarTab text={"Repositories"} path="/"/>
+      <AppBarTab text={"Sign In"} path="/signin"/>
     </ScrollView>
   </View>);
 };

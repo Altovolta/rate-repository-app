@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
-import Text from "./Text"
 import { Link } from "react-router-native"
+import Text from "./Text"
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -8,10 +8,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: theme.spacing.sm,
   },
+  text: {
+    fontSize: theme.fontSizes.appBarItem,
+    fontWeight: theme.fontWeights.bold,
+  }
 
 });
 
-const AppBarTab = ({text, textStyle, path}) => {
+const AppBarTab = ({text, path}) => {
 
   return (
     <Link 
@@ -19,7 +23,7 @@ const AppBarTab = ({text, textStyle, path}) => {
     style={styles.button} 
     to={path}
     >
-      <Text style={textStyle} > {text} </Text>
+      <Text style={styles.text} > {text} </Text>
     </Link>
   )
 }
