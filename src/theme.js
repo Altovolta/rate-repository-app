@@ -4,7 +4,9 @@ const theme = {
     textSecondary: '#586069',
     textTag: "white",
     primary: '#0366d6',
-    appBar: "#ff5600"
+    appBar: "#ff5600",
+    appBarButtonHighlight: "#ff7028ff",
+    mainBackground: "#e1e4e8",
   },
   fontSizes: {
     body: 14,
@@ -28,7 +30,7 @@ const theme = {
   padding: {
     small: 3,
     big: 7,
-  }
+  },
 };
 
 export default theme;

@@ -1,11 +1,27 @@
-import { Pressable } from "react-native"
+import { StyleSheet } from "react-native"
 import Text from "./Text"
-const AppBarTab = ({text, style, textStyle}) => {
+import { Link } from "react-router-native"
+import theme
+ from "../theme";
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    padding: 5,
+    
+  },
+
+});
+
+const AppBarTab = ({text, textStyle, path}) => {
 
   return (
-  <Pressable style={style} onPress={() => console.log(`Pressed button ${text}`)}>
-    <Text style={textStyle} > {text} </Text>
-  </Pressable>
+    <Link 
+    underlayColor={theme.colors.appBarButtonHighlight} 
+    style={styles.button} 
+    to={path}
+    >
+      <Text style={textStyle} > {text} </Text>
+    </Link>
   )
 }
 
