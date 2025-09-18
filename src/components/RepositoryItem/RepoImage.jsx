@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.borders.borderRadius,
   },
   container: {
-    padding: theme.padding.small,
+    padding: theme.spacing.sm,
     alignSelf: 'flex-start'
   }
 })

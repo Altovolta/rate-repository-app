@@ -13,15 +13,15 @@ const styles = StyleSheet.create({
   },
   language: {
     alignSelf: "flex-start",
-    padding: theme.padding.small,
+    padding: theme.spacing.sm,
     backgroundColor: theme.colors.primary,
     color: theme.colors.textTag,
     borderRadius: theme.borders.borderRadius,
   },
   tag: {
     alignSelf: "flex-end", 
-    paddingLeft: theme.padding.big, 
-    rowGap: theme.padding.small
+    paddingLeft: theme.spacing.mid, 
+    rowGap: theme.spacing.sm
   }
 })
 

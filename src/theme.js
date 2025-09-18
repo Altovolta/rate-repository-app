@@ -4,9 +4,10 @@ const theme = {
     textSecondary: '#586069',
     textTag: "white",
     primary: '#0366d6',
-    appBar: "#ff5600",
-    appBarButtonHighlight: "#ff7028ff",
+    appBar: "#adadadff",
+    appBarButtonHighlight: "#cacacaff",
     mainBackground: "#e1e4e8",
+    borderColor: '#b3b3b3ff',
   },
   fontSizes: {
     body: 14,
@@ -22,14 +23,18 @@ const theme = {
   },
   borders: {
     borderRadius: 3,
+    width: 1,
   },
   tinyImage: {
     width: 50, 
     height: 50,
   },
-  padding: {
-    small: 3,
-    big: 7,
+  spacing: {
+    xs: 3,
+    sm: 5,
+    mid: 7,
+    textInput: 10,
+    formPage: 20,
   },
 };
 

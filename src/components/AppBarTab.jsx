@@ -6,7 +6,7 @@ import theme from "../theme";
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    padding: 5,
+    padding: theme.spacing.sm,
   },
 
 });

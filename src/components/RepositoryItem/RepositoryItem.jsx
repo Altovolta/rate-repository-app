@@ -7,8 +7,8 @@ import theme from "../../theme";
 const styles = StyleSheet.create({
   item: {
     backgroundColor: "white",
-    margin:3,
-    padding: 7
+    margin: theme.spacing.xs,
+    padding: theme.spacing.mid
   },
   basicInfo: {
     alignSelf: "flex-start",
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   stats: {
     alignSelf: "flex-start", 
     flexDirection: "row", 
-    paddingTop: theme.padding.big
+    paddingTop: theme.spacing.mid
   }
 })
 

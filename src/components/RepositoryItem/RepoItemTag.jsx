@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
     color: theme.colors.textTag,
     borderRadius: theme.borders.borderRadius,
-    padding: theme.padding.small,
+    padding: theme.spacing.sm,
     flexGrow: 0,
   },
 })
