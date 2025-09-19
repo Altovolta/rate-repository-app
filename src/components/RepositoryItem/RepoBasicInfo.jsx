@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   secondaryText: {
     fontWeight: theme.fontWeights.normal,
     color: "textSecondary",
+    width: 320,
   },
   language: {
     alignSelf: "flex-start",
