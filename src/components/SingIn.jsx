@@ -1,10 +1,11 @@
 import * as yup from 'yup'
-import { Formik, useFormik } from 'formik';
+import { Formik } from 'formik';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Text from './Text'
 import FornikTextInput from './FornikTextInput'
 
 import theme from '../theme';
+import useSignIn from '../hooks/useSignIn';
 
 
 const style = StyleSheet.create({
@@ -51,10 +52,18 @@ const SignInForm = ({ onSubmit }) => {
 }
 
 const SignIn = () => {
+  const [ signIn ] = useSignIn();
 
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm()
+  const onSubmit = async (values, { resetForm }) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+      resetForm();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const initialValues = {
