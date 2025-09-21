@@ -1,17 +1,23 @@
-import { useMutation } from "@apollo/client/react";
+import { useApolloClient, useMutation } from "@apollo/client/react";
 import { AUTHORIZE } from "../graphql/mutations";
+import useAuthStorage from "./useAuthStorage";
 
 const useSignIn = () => {
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
+
   const [authorize, result] = useMutation(AUTHORIZE);
 
   const signIn = async ({ username, password }) => {
     
-    return await authorize({ 
+    const { data } = await authorize({ 
       variables:{ 
         credentials: { username, password }
       }
     });
 
+    authStorage.setAccessToken(data.authenticate.accessToken);
+    apolloClient.resetStore();
   };
 
   return [signIn, result];

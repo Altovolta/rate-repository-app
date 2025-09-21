@@ -6,6 +6,7 @@ import FornikTextInput from './FornikTextInput'
 
 import theme from '../theme';
 import useSignIn from '../hooks/useSignIn';
+import { useNavigate } from 'react-router-native';
 
 
 const style = StyleSheet.create({
@@ -53,16 +54,17 @@ const SignInForm = ({ onSubmit }) => {
 
 const SignIn = () => {
   const [ signIn ] = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = async (values, { resetForm }) => {
     const { username, password } = values;
 
     try {
-      const { data } = await signIn({ username, password });
-      console.log(data);
+      await signIn({ username, password });
       resetForm();
+      navigate('/');
     } catch (e) {
-      console.log(e);
+      console.log("Error", e);
     }
   };
 
