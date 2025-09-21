@@ -16,7 +16,7 @@ const useSignIn = () => {
       }
     });
 
-    authStorage.setAccessToken(data.authenticate.accessToken);
+    await authStorage.setAccessToken(data.authenticate.accessToken);
     apolloClient.resetStore();
   };
 

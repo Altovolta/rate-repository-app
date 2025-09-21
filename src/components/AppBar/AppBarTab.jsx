@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 import { Link } from "react-router-native"
-import Text from "./Text"
-import theme from "../theme";
+import Text from "../Text"
+import theme from "../../theme";
 
 const styles = StyleSheet.create({
   button: {

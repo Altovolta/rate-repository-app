@@ -10,3 +10,13 @@ export const GET_REPOSITORIES = gql`
   }
   ${REPO_INFO}
 `;
+
+
+export const GET_CURRENT_USER = gql`
+  query {
+    me {
+      id
+      username
+    }
+  }
+`
