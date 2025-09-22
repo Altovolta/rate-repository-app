@@ -1,6 +1,6 @@
 import { render, screen, within } from "@testing-library/react-native";
-import { RepositoryListContainer } from "../components/RepositoryList";
-import { getFormattedNumber } from "../utils/getFormatedNumber";
+import { RepositoryListContainer } from "../../components/RepositoryList";
+import { getFormattedNumber } from "../../utils/getFormatedNumber";
 
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
