@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import theme from "../../theme";
 import Text from "../Text";
+import { getFormattedNumber } from "../../utils/getFormatedNumber";
 
 const styles = StyleSheet.create({
   text: {
@@ -19,9 +20,7 @@ const styles = StyleSheet.create({
 
 const RepoStat = ({text, value}) => {
 
-  const itemValue =  value > 1000 
-  ? `${(value / 1000).toFixed(1)}k`
-  : `${value}`
+  const itemValue =  getFormattedNumber(value)
 
   return (
     <View style={styles.container}>
