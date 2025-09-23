@@ -15,7 +15,26 @@ fragment SingleRepoInfo on Repository {
 }
 `
 
-export const REPO_INFO = gql`
+export const SINGLE_REPO_REVIEWS_INFO = gql`
+fragment SingleRepoReviewsInfo on Repository {
+  reviews {
+    edges {
+      node {
+        id
+        text
+        rating
+        createdAt
+        user {
+          id
+          username
+        }
+      }
+    }
+  }
+}`
+
+
+export const REPO_BASIC_INFO = gql`
 fragment RepoInfo on RepositoryConnection {
   edges {
     cursor
