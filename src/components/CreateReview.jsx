@@ -7,6 +7,7 @@ import Button from './Button';
 import FornikTextInput from './FornikTextInput'
 
 import theme from '../theme';
+import useCreateReview from '../hooks/useCreateReview';
 
 
 const styles = StyleSheet.create({
@@ -62,15 +63,21 @@ const CreateReviewForm = ({ onSubmit }) => {
 
 
 const CreateReview = () => {
-  //const navigate = useNavigate();
-
+  const [createReview] = useCreateReview()
+  const navigate = useNavigate();
+  
   const onSubmit = async (values, { resetForm }) => {
-    console.log(values)
+    const { ownerName, repositoryName, rating, text} = values
 
     try {
-      //await signIn({ username, password });
-      //resetForm();
-      //navigate(`/repository/${}`);
+      const response = await createReview({ 
+        ownerName, 
+        repositoryName, 
+        rating: Number(rating), 
+        text
+      })
+      resetForm();
+      navigate(`/repositories/${response.data.repositoryId}`);
     } catch (e) {
       console.log("Error", e);
     }

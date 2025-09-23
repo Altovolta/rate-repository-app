@@ -37,7 +37,6 @@ const SingleRepository = () => {
       ItemSeparatorComponent={<ItemSeparator />}
     />
   )
-    
   
 }
 
