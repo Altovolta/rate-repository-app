@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { REPO_INFO } from './fragments';
+import { REPO_INFO, SINGLE_REPO_INFO } from './fragments';
 
 
 export const GET_REPOSITORIES = gql`
@@ -19,4 +19,14 @@ export const GET_CURRENT_USER = gql`
       username
     }
   }
+`
+
+
+export const GET_REPOSITORY = gql`
+  query($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      ...SingleRepoInfo
+    }
+  }
+  ${SINGLE_REPO_INFO}
 `

@@ -1,8 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import * as Linking from 'expo-linking';
+
 import RepoImage from "./RepoImage";
 import RepoBasicInfo from "./RepoBasicInfo";
 import RepoStat from "./RepoStat";
 import theme from "../../theme";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
   item: {
@@ -18,10 +21,34 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start", 
     flexDirection: "row", 
     paddingTop: theme.spacing.mid
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    padding: theme.spacing.textInput,
+    borderRadius: theme.borders.borderRadius,
+    marginVertical: theme.spacing.sm,
+    alignSelf: "stretch",
+    alignItems: "center"
+  },
+  buttonText: {
+    color: theme.colors.textTag,
+    fontWeight: "bold"
   }
 })
 
-const RepositoryItem = ({item}) => {
+
+const Button = ({text, ...props}) => {
+
+  return (
+    <Pressable style={styles.button} {...props}>
+      <View>
+        <Text style={styles.buttonText}>{text}</Text>
+      </View>
+    </Pressable>
+  )
+}
+
+const RepositoryItem = ({item, singleView = false}) => {
 
   return (
     <View testID="repositoryItem" style={styles.item}>
@@ -39,6 +66,13 @@ const RepositoryItem = ({item}) => {
         <RepoStat text={"Reviews"} value={item.reviewCount} />
         <RepoStat text={"Rating"} value={item.ratingAverage} />
       </View>
+      {
+        singleView && 
+        <Button 
+        text="Open in Github"
+        onPress={() => Linking.openURL(item.url)}
+        />
+      }
     </View>
   );
 
