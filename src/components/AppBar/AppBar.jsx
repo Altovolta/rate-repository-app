@@ -45,12 +45,18 @@ const AppBar = () => {
       <AppBarTab text={"Repositories"} path="/"/>
       {
         data && data.me
-        ? <Button 
-        type='secondary'
-        text="Sign Out"
-        textStyleProp={styles.text} 
-        buttonStyleProp={styles.button}
-        onPress={handleLogout}/>
+        ? (
+          <>
+            <AppBarTab text="Create a review" path="/reviews/create"/>
+            <Button 
+            type='secondary'
+            text="Sign Out"
+            textStyleProp={styles.text} 
+            buttonStyleProp={styles.button}
+            onPress={handleLogout}/>
+          </>
+      
+      )
         : <AppBarTab text={"Sign In"} path="/signin"/>
       }
     </ScrollView>
