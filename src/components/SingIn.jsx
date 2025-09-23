@@ -1,30 +1,24 @@
 import * as yup from 'yup'
 import { Formik } from 'formik';
-import { Pressable, StyleSheet, View } from 'react-native';
-import Text from './Text'
+import { StyleSheet, View } from 'react-native';
+import { useNavigate } from 'react-router-native';
+
+import Button from './Button';
 import FornikTextInput from './FornikTextInput'
 
 import theme from '../theme';
 import useSignIn from '../hooks/useSignIn';
-import { useNavigate } from 'react-router-native';
 
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     padding: theme.spacing.formPage,
     backgroundColor: "white"
   },
   button: {
-    backgroundColor: theme.colors.primary,
-    padding: theme.spacing.textInput,
-    borderRadius: theme.borders.borderRadius,
-    marginVertical: theme.spacing.sm,
+    marginTop: theme.spacing.sm,
     alignSelf: "stretch",
     alignItems: "center"
-  },
-  buttonText: {
-    color: theme.colors.textTag,
-    fontWeight: "bold"
   }
 })
 
@@ -35,7 +29,7 @@ const validationSchema = yup.object().shape({
 
 const SignInForm = ({ onSubmit }) => {
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <FornikTextInput 
       name={"username"}
       placeholder='Username'
@@ -45,9 +39,12 @@ const SignInForm = ({ onSubmit }) => {
       name={"password"}
       placeholder='Password'
       />
-      <Pressable testID="singinFormSumbit"style={style.button} onPress={onSubmit}>
-        <Text style={style.buttonText}>Sign in</Text>
-      </Pressable>
+      <Button 
+      testID="singinFormSumbit" 
+      text="Sign in" 
+      buttonStyleProp={styles.button}
+      onPress={onSubmit}
+      />
     </View>
   )
 }

@@ -47,8 +47,8 @@ describe('RepositoryList', () => {
           },
         ],
       };
-
-      render(<RepositoryListContainer repositories={repositories} />)
+      const navigate = jest.fn()
+      render(<RepositoryListContainer repositories={repositories} navigate={navigate}/>)
 
       const repositoryItems = screen.getAllByTestId('repositoryItem');
 

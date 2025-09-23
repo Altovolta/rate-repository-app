@@ -5,9 +5,9 @@ import Constants from 'expo-constants';
 
 import theme from '../../theme'
 import AppBarTab from './AppBarTab';
-import AppBarButton from './AppBarButton';
 
 import { GET_CURRENT_USER } from '../../graphql/queries';
+import Button from '../Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +17,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row"
   },
+  button: {
+    alignItems: 'center',
+    padding: theme.spacing.sm,
+    backgroundColor: theme.colors.appBar,
+  },
+  text: {
+    fontSize: theme.fontSizes.appBarItem,
+  }
 });
 
 const AppBar = () => {
@@ -37,7 +45,12 @@ const AppBar = () => {
       <AppBarTab text={"Repositories"} path="/"/>
       {
         data && data.me
-        ? <AppBarButton text={"Sign Out"} onPress={handleLogout}/> 
+        ? <Button 
+        type='secondary'
+        text="Sign Out"
+        textStyleProp={styles.text} 
+        buttonStyleProp={styles.button}
+        onPress={handleLogout}/>
         : <AppBarTab text={"Sign In"} path="/signin"/>
       }
     </ScrollView>
