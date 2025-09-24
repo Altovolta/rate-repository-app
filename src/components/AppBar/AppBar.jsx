@@ -8,6 +8,7 @@ import AppBarTab from './AppBarTab';
 
 import { GET_CURRENT_USER } from '../../graphql/queries';
 import Button from '../Button';
+import { useNavigate } from 'react-router-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,10 +32,12 @@ const AppBar = () => {
 
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
+  const navigate = useNavigate()
   
   const handleLogout = async () => {
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
+    navigate('/')
   }
 
   const { data } = useQuery(GET_CURRENT_USER);
