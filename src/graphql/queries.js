@@ -3,13 +3,13 @@ import { REPO_BASIC_INFO, SINGLE_REPO_INFO, SINGLE_REPO_REVIEWS_INFO } from './f
 
 
 export const GET_REPOSITORIES = gql`
-  query  {
-    repositories {
+  query ($orderDirection: OrderDirection, $orderBy: AllRepositoriesOrderBy) {
+    repositories(orderDirection: $orderDirection, orderBy: $orderBy) {
       ...RepoInfo
     }
   }
   ${REPO_BASIC_INFO}
-`;
+`
 
 
 export const GET_CURRENT_USER = gql`
