@@ -64,14 +64,14 @@ const ReviewItemRating = ({rating}) => {
   )
 }
 
-const ReviewItemContent = ({username, date, reviewText}) => {
+const ReviewItemContent = ({title, date, reviewText}) => {
 
   const formattedDate = format(new Date(date), "MM.dd.yyyy")
 
   return (
     <View style={styles.content}>
       <Text style={styles.title}>
-        {username}
+        {title}
       </Text>
       <Text style={styles.date}>
         {formattedDate}
@@ -84,14 +84,16 @@ const ReviewItemContent = ({username, date, reviewText}) => {
 }
 
 
-const ReviewItem = ({item}) => {
+const ReviewItem = ({item, personalReview = false}) => {
+
+  const title = personalReview ? item.repository.fullName: item.user.username 
 
   return (
     <View style={styles.container}>
       <View style={styles.reviewContainer}>
         <ReviewItemRating rating={item.rating}/>
         <ReviewItemContent 
-          username={item.user.username}
+          title={title}
           date={item.createdAt}
           reviewText={item.text}
         />

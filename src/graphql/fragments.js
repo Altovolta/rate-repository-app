@@ -14,25 +14,48 @@ fragment SingleRepoInfo on Repository {
   url
 }
 `
+export const REVIEW_BASE = gql`
+  fragment ReviewBase on Review {
+    id
+    text
+    rating
+    createdAt
+  }
+`
+
+export const REVIEW_BASE_WITH_USER = gql`
+fragment ReviewBaseWithUser on Review {
+  ...ReviewBase
+  user {
+    id
+    username
+  }
+}
+${REVIEW_BASE}
+`
+
+export const REVIEW_BASE_WITH_REPO = gql`
+fragment ReviewBaseWithRepo on Review {
+  ...ReviewBase
+  repository {
+    fullName
+  }
+}
+${REVIEW_BASE}
+`
 
 export const SINGLE_REPO_REVIEWS_INFO = gql`
 fragment SingleRepoReviewsInfo on Repository {
   reviews {
     edges {
       node {
-        id
-        text
-        rating
-        createdAt
-        user {
-          id
-          username
-        }
+        ...ReviewBaseWithUser
       }
     }
   }
-}`
-
+}
+${REVIEW_BASE_WITH_USER}
+`
 
 export const REPO_BASIC_INFO = gql`
 fragment RepoInfo on RepositoryConnection {

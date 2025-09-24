@@ -48,6 +48,7 @@ const AppBar = () => {
         ? (
           <>
             <AppBarTab text="Create a review" path="/reviews/create"/>
+            <AppBarTab text="My reviews" path="/reviews/me"/>
             <Button 
             type='secondary'
             text="Sign Out"
