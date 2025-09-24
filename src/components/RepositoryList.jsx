@@ -1,20 +1,43 @@
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigate } from 'react-router-native';
+import { useState } from 'react';
+import { useDebounce } from "use-debounce";
 import { Picker } from '@react-native-picker/picker';
+import { Searchbar } from 'react-native-paper';
 
 import RepositoryItem from './RepositoryItem/RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
-import { useState } from 'react';
+import theme from '../theme';
+
+
 const styles = StyleSheet.create({
   separator: {
     height: 5,
   },
+  searchBar: {
+    margin: 10,
+    backgroundColor: "white",
+    borderRadius: theme.borders.borderRadius
+  }
 });
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
 
-const ReposirotyListSort = ({selectedOrder, setSelectedOrder}) => {
+const SearchBar = ({searchKeyword, setSearchKeyword}) => {
+  
+  return (
+    <Searchbar style={styles.searchBar}
+      placeholder="Search"
+      onChangeText={setSearchKeyword}
+      value={searchKeyword}
+    />
+  );
+};
+
+
+
+const RepositoryListOrder = ({selectedOrder, setSelectedOrder}) => {
 
   return (
     <Picker
@@ -22,10 +45,6 @@ const ReposirotyListSort = ({selectedOrder, setSelectedOrder}) => {
       onValueChange={(itemValue) =>
         setSelectedOrder(itemValue)
       }>
-      <Picker.Item 
-      label="Order by" 
-      enabled={false} 
-      />
       <Picker.Item 
       label="Latest Repositories" 
       value={{orderBy: "CREATED_AT", orderDirection: "DESC"}}
@@ -41,9 +60,11 @@ const ReposirotyListSort = ({selectedOrder, setSelectedOrder}) => {
   )
 }
 
+
 export const RepositoryListContainer = ({
   repositories, navigate,
-  selectedOrder, setSelectedOrder
+  selectedOrder, setSelectedOrder,
+  searchKeyword, setSearchKeyword
 }) => {
 
   const repositoryNodes = repositories
@@ -55,10 +76,16 @@ export const RepositoryListContainer = ({
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       ListHeaderComponent={
-        <ReposirotyListSort 
-          selectedOrder={selectedOrder} 
-          setSelectedOrder={setSelectedOrder}
-        />
+        (<>
+            <SearchBar 
+            searchKeyword={searchKeyword} 
+            setSearchKeyword={setSearchKeyword}
+            />
+            <RepositoryListOrder 
+              selectedOrder={selectedOrder} 
+              setSelectedOrder={setSelectedOrder}
+            />
+        </>)
       }
       renderItem={(item) => (
         <Pressable onPress={() => navigate(`/repositories/${item.item.id}`)}>
@@ -72,12 +99,19 @@ export const RepositoryListContainer = ({
 
 const RepositoryList = () => {
 
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [debouncedText] = useDebounce(searchKeyword, 300);
+
   const [selectedOrder, setSelectedOrder] = useState({
     orderBy: "CREATED_AT",
     orderDirection: "DESC"
   });
   
-  const { repositories } = useRepositories(selectedOrder);
+  const { repositories } = useRepositories({
+    ...selectedOrder, 
+    searchKeyword: debouncedText
+  });
+
   const navigate = useNavigate()
 
   return <RepositoryListContainer 
@@ -85,6 +119,9 @@ const RepositoryList = () => {
   navigate={navigate}
   selectedOrder={selectedOrder}
   setSelectedOrder={setSelectedOrder}
+  searchKeyword={searchKeyword}
+  setSearchKeyword={setSearchKeyword}
+  
   />;
 };
 

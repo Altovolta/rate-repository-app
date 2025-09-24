@@ -3,8 +3,8 @@ import { REPO_BASIC_INFO, SINGLE_REPO_INFO, SINGLE_REPO_REVIEWS_INFO } from './f
 
 
 export const GET_REPOSITORIES = gql`
-  query ($orderDirection: OrderDirection, $orderBy: AllRepositoriesOrderBy) {
-    repositories(orderDirection: $orderDirection, orderBy: $orderBy) {
+  query ($searchKeyword: String, $orderDirection: OrderDirection, $orderBy: AllRepositoriesOrderBy) {
+    repositories(searchKeyword: $searchKeyword, orderDirection: $orderDirection, orderBy: $orderBy) {
       ...RepoInfo
     }
   }
