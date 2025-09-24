@@ -37,6 +37,6 @@ export const GET_REPOSITORY = gql`
       ...SingleRepoReviewsInfo
     }
   }
-  ${SINGLE_REPO_INFO}
+  ${SINGLE_REPO_INFO},
   ${SINGLE_REPO_REVIEWS_INFO}
 `

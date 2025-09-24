@@ -27,12 +27,15 @@ const Button = ({text, type = "primary", buttonStyleProp, textStyleProp, ...prop
     type === "secondary" && { 
       backgroundColor: theme.colors.appBar,
     },
+    type === "remove" && { 
+      backgroundColor: theme.colors.remove,
+    },
     buttonStyleProp
   ]
 
   const textStyle = [
     styles.buttonText,
-    type === "primary" && { 
+    (type === "primary" || type === "remove") && { 
       color: theme.colors.textTag,
     },
     type === "secondary" && { 

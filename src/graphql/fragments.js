@@ -37,6 +37,7 @@ ${REVIEW_BASE}
 export const REVIEW_BASE_WITH_REPO = gql`
 fragment ReviewBaseWithRepo on Review {
   ...ReviewBase
+  repositoryId
   repository {
     fullName
   }

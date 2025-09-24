@@ -26,8 +26,10 @@ const SingleRepository = () => {
 );
 
   if (!data ) return null
-  
+
+  console.log(id)
   const reviews = data.repository.reviews.edges
+
   return (
     <FlatList 
       data={reviews}

@@ -10,6 +10,7 @@ const theme = {
     appBarButtonHighlight: "#cacacaff",
     mainBackground: "#e1e4e8",
     borderColor: '#b3b3b3ff',
+    remove:"#da3c4cff" ,
     error: '#d73a4a'
   },
   fontSizes: {

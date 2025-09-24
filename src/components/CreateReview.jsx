@@ -77,7 +77,7 @@ const CreateReview = () => {
         text
       })
       resetForm();
-      navigate(`/repositories/${response.data.repositoryId}`);
+      navigate(`/repositories/${response.data.createReview.repositoryId}`);
     } catch (e) {
       console.log("Error", e);
     }
