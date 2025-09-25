@@ -60,11 +60,17 @@ ${REVIEW_BASE_WITH_USER}
 
 export const REPO_BASIC_INFO = gql`
 fragment RepoInfo on RepositoryConnection {
+  totalCount
   edges {
-    cursor
     node {
       ...SingleRepoInfo
     }
+    cursor
+  }
+  pageInfo {
+    endCursor
+    startCursor
+    hasNextPage
   }
 }
   ${SINGLE_REPO_INFO}

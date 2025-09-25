@@ -64,7 +64,8 @@ const RepositoryListOrder = ({selectedOrder, setSelectedOrder}) => {
 export const RepositoryListContainer = ({
   repositories, navigate,
   selectedOrder, setSelectedOrder,
-  searchKeyword, setSearchKeyword
+  searchKeyword, setSearchKeyword,
+  onEndReached
 }) => {
 
   const repositoryNodes = repositories
@@ -75,6 +76,8 @@ export const RepositoryListContainer = ({
     <FlatList
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
       ListHeaderComponent={
         (<>
             <SearchBar 
@@ -107,21 +110,27 @@ const RepositoryList = () => {
     orderDirection: "DESC"
   });
   
-  const { repositories } = useRepositories({
+  const { repositories, fetchMore } = useRepositories({
+    first: 8,
     ...selectedOrder, 
     searchKeyword: debouncedText
   });
 
   const navigate = useNavigate()
 
+  const onEndReached = () => {
+    fetchMore();
+  };
+
+
   return <RepositoryListContainer 
-  repositories={repositories} 
-  navigate={navigate}
-  selectedOrder={selectedOrder}
-  setSelectedOrder={setSelectedOrder}
-  searchKeyword={searchKeyword}
-  setSearchKeyword={setSearchKeyword}
-  
+    repositories={repositories} 
+    navigate={navigate}
+    selectedOrder={selectedOrder}
+    setSelectedOrder={setSelectedOrder}
+    searchKeyword={searchKeyword}
+    setSearchKeyword={setSearchKeyword}
+    onEndReached={onEndReached}
   />;
 };
 
