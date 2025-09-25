@@ -1,19 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const SINGLE_REPO_INFO = gql`
-fragment SingleRepoInfo on Repository {
-  id
-  ownerAvatarUrl
-  fullName
-  description
-  language
-  forksCount
-  reviewCount
-  stargazersCount
-  ratingAverage
-  url
-}
-`
+
+/* REVIEWS */
 export const REVIEW_BASE = gql`
   fragment ReviewBase on Review {
     id
@@ -46,16 +34,35 @@ ${REVIEW_BASE}
 `
 
 export const SINGLE_REPO_REVIEWS_INFO = gql`
-fragment SingleRepoReviewsInfo on Repository {
-  reviews {
-    edges {
-      node {
-        ...ReviewBaseWithUser
-      }
+fragment SingleRepoReviewsInfo on ReviewConnection {
+  edges {
+    node {
+      ...ReviewBaseWithUser
     }
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+    hasPreviousPage
   }
 }
 ${REVIEW_BASE_WITH_USER}
+`
+
+/* REPOSITORIES */
+export const SINGLE_REPO_INFO = gql`
+fragment SingleRepoInfo on Repository {
+  id
+  ownerAvatarUrl
+  fullName
+  description
+  language
+  forksCount
+  reviewCount
+  stargazersCount
+  ratingAverage
+  url
+}
 `
 
 export const REPO_BASIC_INFO = gql`

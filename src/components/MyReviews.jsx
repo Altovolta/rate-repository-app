@@ -34,7 +34,6 @@ const MyReviewItem = ({item, refetch}) => {
   const [deleteReview, result] = useMutation(DELETE_REVIEW)
 
   const handleRemoval = async (deleteReviewId) => {
-    console.log(deleteReviewId)
 
     Alert.alert(
       "Delete review", 

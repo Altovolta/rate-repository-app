@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { REPO_BASIC_INFO, REVIEW_BASE, REVIEW_BASE_WITH_REPO, SINGLE_REPO_INFO, SINGLE_REPO_REVIEWS_INFO } from './fragments';
+import { REPO_BASIC_INFO, REVIEW_BASE_WITH_REPO, SINGLE_REPO_INFO, SINGLE_REPO_REVIEWS_INFO } from './fragments';
 
 
 export const GET_REPOSITORIES = gql`
@@ -42,10 +42,12 @@ export const GET_CURRENT_USER = gql`
 
 
 export const GET_REPOSITORY = gql`
-  query($repositoryId: ID!) {
+  query($repositoryId: ID!, $first: Int, $after: String) {
     repository(id: $repositoryId) {
       ...SingleRepoInfo
-      ...SingleRepoReviewsInfo
+      reviews (first: $first, after: $after){
+        ...SingleRepoReviewsInfo
+      }
     }
   }
   ${SINGLE_REPO_INFO},
